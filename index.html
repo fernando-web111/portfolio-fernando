@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fernando | Sobre mim</title>
+  <style>
+    :root {
+      --bg: #0f0f13; --surface: #1a1a24; --border: #2a2a3a;
+      --text: #e8e8f0; --muted: #8888a8; --accent: #7c5cfc; --accent2: #b490ff;
+      --h: 64px; --r: 12px; --tr: 0.3s ease;
+    }
+    body.light { --bg: #f4f2ff; --surface: #fff; --border: #ddd8f8; --text: #18182a; --muted: #6060a0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background var(--tr), color var(--tr); }
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER */
+    .header { position: fixed; top: 0; left: 0; right: 0; height: var(--h); background: var(--surface); border-bottom: 1px solid var(--border); z-index: 100; }
+    .header-inner { max-width: 1100px; margin: 0 auto; height: 100%; padding: 0 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .logo { font-family: 'Courier New', monospace; font-size: 1.2rem; font-weight: 700; flex-shrink: 0; }
+    .logo-dot { color: var(--accent); }
+    .nav { display: flex; gap: 0.25rem; margin-left: auto; }
+    .nav-link { padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.875rem; font-weight: 500; color: var(--muted); transition: color var(--tr), background var(--tr); }
+    .nav-link:hover { color: var(--text); background: var(--border); }
+    .nav-link.active { color: #fff; background: var(--accent); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform var(--tr), opacity var(--tr); }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .theme-btn { background: none; border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.6rem; cursor: pointer; font-size: 1rem; flex-shrink: 0; transition: border-color var(--tr); }
+    .theme-btn:hover { border-color: var(--accent); }
+
+    /* MAIN */
+    .main { flex: 1; padding-top: calc(var(--h) + 2.5rem); padding-bottom: 4rem; }
+    .footer { text-align: center; padding: 1.5rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+
+    /* PAGE HEADER */
+    .page-header { max-width: 900px; margin: 0 auto 2rem; padding: 0 1.5rem; }
+    .page-title { font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 800; margin-bottom: 0.4rem; }
+    .page-title span { color: var(--accent); }
+    .page-sub { color: var(--muted); font-size: 1rem; }
+
+    /* CONTEÚDO */
+    .secao { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .bloco {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--r);
+      padding: 1.5rem;
+    }
+    .bloco-titulo {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.6rem;
+    }
+    .bloco-texto {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .bloco-texto strong { color: var(--accent2); }
+
+    /* TAGS */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .tag {
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(124,92,252,0.15);
+      color: var(--accent2);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1px solid rgba(124,92,252,0.3);
+    }
+
+    /* AVATAR */
+    .topo { display: flex; align-items: center; gap: 2rem; margin-bottom: 1.5rem; max-width: 900px; margin-left: auto; margin-right: auto; padding: 0 1.5rem; }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Courier New', monospace; font-size: 3rem; font-weight: 900; color: #fff;
+      box-shadow: 0 0 40px rgba(124,92,252,0.4);
+      animation: brilho 4s ease-in-out infinite alternate;
+    }
+    @keyframes brilho {
+      from { box-shadow: 0 0 25px rgba(124,92,252,0.3); }
+      to   { box-shadow: 0 0 60px rgba(124,92,252,0.6); }
+    }
+    .topo-nome h2 { font-size: 1.5rem; font-weight: 800; }
+    .topo-nome p  { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      .theme-btn   { order: 3; }
+      .nav { position: absolute; top: var(--h); left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--border); flex-direction: column; padding: 0.75rem; gap: 0.2rem; display: none; }
+      .nav.aberto { display: flex; }
+      .nav-link { border-radius: var(--r); padding: 0.6rem 1rem; }
+      .topo { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <span class="logo">Fernando<span class="logo-dot">.</span></span>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="mainNav">
+        <a href="sobre.html"     class="nav-link active">Sobre mim</a>
+        <a href="formacao.html"  class="nav-link">Formação</a>
+        <a href="portfolio.html" class="nav-link">Portfólio</a>
+        <a href="contato.html"   class="nav-link">Contato</a>
+      </nav>
+      <button class="theme-btn" id="themeBtn" aria-label="Alternar tema">🌙</button>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Avatar + nome -->
+    <div class="topo">
+      <div class="avatar" aria-hidden="true">F</div>
+      <div class="topo-nome">
+        <h2>Fernando</h2>
+        <p>Estudante de ADS · UNINTER</p>
+      </div>
+    </div>
+
+    <!-- Título da seção -->
+    <div class="page-header">
+      <h1 class="page-title">Sobre <span>mim</span></h1>
+      <p class="page-sub">Conheça um pouco mais sobre quem eu sou.</p>
+    </div>
+
+    <!-- Blocos de informação -->
+    <div class="secao">
+
+      <div class="bloco">
+        <p class="bloco-titulo">👤 Apresentação</p>
+        <p class="bloco-texto">
+          Meu nome é <strong>Fernando</strong>. Sou estudante de
+          <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong>.
+          Tenho interesse em <strong>programação</strong>, <strong>hardware</strong>
+          e <strong>segurança da informação</strong>.
+        </p>
+      </div>
+
+      <div class="bloco">
+        <p class="bloco-titulo">🎮 Hobbie</p>
+        <p class="bloco-texto">
+          Meu hobbie é jogar <strong>video games</strong> — uma forma de relaxar
+          e exercitar o raciocínio estratégico nos momentos livres.
+        </p>
+      </div>
+
+      <div class="bloco">
+        <p class="bloco-titulo">🎯 Áreas de Interesse</p>
+        <div class="tags">
+          <span class="tag">💻 Programação</span>
+          <span class="tag">🔧 Hardware</span>
+          <span class="tag">🔒 Segurança da Informação</span>
+          <span class="tag">🎮 Video Games</span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Fernando · Portfólio pessoal</p>
+  </footer>
+
+  <script>
+    /* --- Tema claro/escuro --- */
+    const themeBtn = document.getElementById('themeBtn');
+    const aplicar  = t => { document.body.classList.toggle('light', t === 'light'); themeBtn.textContent = t === 'light' ? '☀️' : '🌙'; };
+    aplicar(localStorage.getItem('tema') || 'dark');
+    themeBtn.addEventListener('click', () => {
+      const novo = document.body.classList.contains('light') ? 'dark' : 'light';
+      aplicar(novo); localStorage.setItem('tema', novo);
+    });
+
+    /* --- Menu hamburguer --- */
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav    = document.getElementById('mainNav');
+    menuToggle.addEventListener('click', () => {
+      const a = mainNav.classList.toggle('aberto');
+      menuToggle.classList.toggle('open', a);
+      menuToggle.setAttribute('aria-expanded', String(a));
+    });
+    mainNav.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+      mainNav.classList.remove('aberto'); menuToggle.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false');
+    }));
+  </script>
+</body>
+</html>
