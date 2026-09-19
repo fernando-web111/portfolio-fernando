@@ -35,12 +35,8 @@
     .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
     .project-card{background-color:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--transition),transform var(--transition);}
     .project-card:hover{border-color:var(--clr-accent);transform:translateY(-4px);}
-    .project-card--placeholder{opacity:0.6;}
     .project-thumb{height:130px;display:flex;align-items:center;justify-content:center;}
-    .proj-1{background:linear-gradient(135deg,#7c5cfc,#b490ff);}
-    .proj-2{background:linear-gradient(135deg,#0ea5e9,#38bdf8);}
     .proj-3{background:linear-gradient(135deg,#f59e0b,#fbbf24);}
-    .proj-4{background:linear-gradient(135deg,#4ade80,#86efac);}
     .proj-5{background:linear-gradient(135deg,#f472b6,#fb7185);}
     .proj-emoji{font-size:3.25rem;}
     .project-info{padding:1.4rem;flex:1;display:flex;flex-direction:column;}
@@ -87,27 +83,7 @@
     <section class="content-section">
       <div class="projects-grid">
 
-        <article class="project-card">
-          <div class="project-thumb proj-1"><span class="proj-emoji">🌐</span></div>
-          <div class="project-info">
-            <h3 class="project-title">Portfólio Pessoal</h3>
-            <p class="project-desc">Site de portfólio desenvolvido com HTML5, CSS3 puro e JavaScript — sem nenhum framework. Inclui tema claro/escuro, menu responsivo e formulário com validação.</p>
-            <div class="project-tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span></div>
-            <a href="https://github.com" target="_blank" rel="noopener" class="project-link">Ver no GitHub →</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-thumb proj-2"><span class="proj-emoji">🧮</span></div>
-          <div class="project-info">
-            <h3 class="project-title">Calculadora Web</h3>
-            <p class="project-desc">Calculadora simples criada como exercício prático de lógica JavaScript, com interface limpa e operações básicas funcionando no navegador.</p>
-            <div class="project-tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span></div>
-            <a href="https://github.com" target="_blank" rel="noopener" class="project-link">Ver no GitHub →</a>
-          </div>
-        </article>
-
-       <article class="project-card">
+<article class="project-card">
   <div class="project-thumb proj-3">
     <span class="proj-emoji">📋</span>
   </div>
@@ -150,16 +126,7 @@
           </div>
         </article>
         
-        <article class="project-card project-card--placeholder">
-          <div class="project-thumb proj-4"><span class="proj-emoji">🚀</span></div>
-          <div class="project-info">
-            <h3 class="project-title">Próximo projeto…</h3>
-            <p class="project-desc">Em construção. Novas ideias surgem a cada semana — acompanhe meu GitHub para as novidades!</p>
-            <div class="project-tags"><span class="tag">Em breve</span></div>
-          </div>
-        </article>
-
-      </div>
+</div>
     </section>
 
   </main>
